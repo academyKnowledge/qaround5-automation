@@ -10,7 +10,7 @@ describe('test cases', () => {
         cy.get("#subscribe").should("have.css","background","rgb(254, 152, 15) none repeat scroll 0% 0% / auto padding-box border-box")
     });
 
-    it('', () => {
+    it.only('', () => {
         cy.visit("https://automationexercise.com/product_details/5")
         cy.get("#quantity").should("have.value","1")
         cy.visit("https://automationexercise.com/view_cart")
