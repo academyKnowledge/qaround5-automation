@@ -30,7 +30,7 @@ describe('test cases', () => {
          cy.get(".alert-success").first().should("be.visible").and("have.text","Success! Your details have been submitted successfully.")
          cy.get(".btn-success").should("be.visible").and("contain","Home")
          cy.get(".btn-success").click()
-         cy.url().should("eq","https://automationexercise.com")
+         cy.url().should("eq","https://automationexercise.com/")
         });
 });
 

@@ -12,6 +12,10 @@ describe('Products in cart', () => {
         cy.contains(productName).click();
         cy.get('#product-select-option-0').select('M');
         cy.get('#add').click(); 
+        // cy.screenshot({capture:"fullPage"})
+        // cy.screenshot({capture:"viewport"})
+        cy.screenshot({capture:"runner"})
+
         cy.get('#cart-target-desktop .count').should('contain',quantity)
         cy.get(".checkout").click();
         cy.get("#cart .info").should("be.visible").and("contain",productName)
