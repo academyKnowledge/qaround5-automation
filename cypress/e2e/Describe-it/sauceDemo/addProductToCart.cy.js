@@ -1,7 +1,7 @@
 /// <reference types="cypress"/>
 describe('Products in cart', () => {
 
-    let productName = "Black heels"
+    const productName = "Black heels"
     let quantity = 1
     
     before(()=>{

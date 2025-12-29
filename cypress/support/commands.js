@@ -24,9 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('findByDataQa', (dataQa) => { 
-    cy.get(`[data-qa=${dataQa}]`)
-})
+Cypress.Commands.add('findByDataQa', (dataQa) => {cy.get(`[data-qa=${dataQa}]`)} )
 
 Cypress.Commands.add('loginToSauceDemo',(email,password) => {  
     cy.visit("https://sauce-demo.myshopify.com/account/login")
