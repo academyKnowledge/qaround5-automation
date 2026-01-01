@@ -1,19 +1,35 @@
-import { Given , When , Then } from "cypress-cucumber-preprocessor/steps";
+import { Given , When , Then, Before ,After } from "cypress-cucumber-preprocessor/steps";
 
 beforeEach(()=>{
     cy.log("This is beforeEach hook")
 })
 
+// Before({tags:"@TC-7689"},()=>{
+//     cy.screenshot()
+// })
+
+// Before({tags:"@TC-7689 or @TC-4567"},()=>{
+//     cy.screenshot()
+// })
+
+// Before({tags:"@area1 and @TC-4567"},()=>{
+//     cy.screenshot()
+// })
+
+// Before({tags:"not @TC-4567"},()=>{
+//     cy.screenshot()
+// })
+
 Given("The user navigate to the login page",()=>{
     cy.visit("https://automationexercise.com/login")
 })
 
-When("The user types email in email input field",()=>{
-    cy.findByDataQa("login-email").type("shahdtest1@mail.com")
+When("The user types {string} in email input field",(email)=>{
+    cy.findByDataQa("login-email").type(email)
 })
 
-When("The user types password in password input field",()=>{
-    cy.findByDataQa("login-password").clear().type("Password123!")
+When("The user types {word} in password input field",(password)=>{
+    cy.findByDataQa("login-password").clear().type(password)
 })
 
 When("The user clicks on login button",()=>{
