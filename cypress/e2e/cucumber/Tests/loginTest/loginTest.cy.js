@@ -1,8 +1,16 @@
 import { Given , When , Then, Before ,After } from "cypress-cucumber-preprocessor/steps";
+import loginTestActions from "../../../../pageObjects/loginTest/Actions.cy";
+import sharedActions from "../../../../pageObjects/shared/Actions.cy";
+import sharedAssertions from "../../../../pageObjects/shared/Assertions.cy";
+import loginTestAssertions from "../../../../pageObjects/loginTest/Assertions.cy";
 
 beforeEach(()=>{
     cy.log("This is beforeEach hook")
 })
+const loginTest  = new loginTestActions()
+const sharedAction = new sharedActions()
+const sharedAssertion = new sharedAssertions()
+const loginTestAssertion = new loginTestAssertions()
 
 // Before({tags:"@TC-7689"},()=>{
 //     cy.screenshot()
@@ -21,36 +29,36 @@ beforeEach(()=>{
 // })
 
 Given("The user navigate to the login page",()=>{
-    cy.visit("https://automationexercise.com/login")
+    loginTest.openLoginPage()
 })
 
 When("The user types {string} in email input field",(email)=>{
-    cy.findByDataQa("login-email").type(email)
+    loginTest.typeEmailInEmailInputField(email)
 })
 
 When("The user types {word} in password input field",(password)=>{
-    cy.findByDataQa("login-password").clear().type(password)
+    loginTest.typePasswordInPasswordInputField(password)
 })
 
 When("The user clicks on login button",()=>{
-    cy.findByDataQa("login-button").click()
-    // cy.screenshot()
+    loginTest.clickOnSubmitButton()
+    sharedAction.takeScreenshot()
+    
 })
 
 When("The user types invalid email in email input field",()=>{
-    cy.findByDataQa("login-email").type("shahdtest133@mail.com")
+    loginTest.typeEmailInEmailInputField("shahdtest133@mail.com")
 })
 
 Then("The user will be redirected to the home page",()=>{
-    cy.url().should('eq',"https://automationexercise.com/")
-    cy.contains("Logged in as").should("be.visible")
-    cy.get("[href='/logout']").should("exist").and("be.visible")
+    sharedAssertion.checkCurrentURLIsEqual("https://automationexercise.com/")
+    loginTestAssertion.checkLabelIsVisible().checkLogoutUrlIsExitAndIsVisible()
 })
 
 Then("The user should stay in login page",()=>{
-    cy.url().should('eq',"https://automationexercise.com/login")
+    sharedAssertion.checkCurrentURLIsEqual("https://automationexercise.com/login")
 })
 
 Then("A validation message {string} should shown",(message)=>{
-    cy.get(".login-form form p").should("be.visible").and("contain",message)
+    loginTestAssertion.checkValidationMessageIsVisibleAndIsContain(message)
 })

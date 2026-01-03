@@ -26,11 +26,11 @@
 
 Cypress.Commands.add('findByDataQa', (dataQa) => {cy.get(`[data-qa=${dataQa}]`)} )
 
-Cypress.Commands.add('loginToSauceDemo',(email,password) => {  
+Cypress.Commands.add('loginToSauceDemo',() => {  
     cy.visit("https://sauce-demo.myshopify.com/account/login")
-    cy.get("#customer_email").type(email)
-    cy.get("#customer_password").type(password)
+    cy.fixture("loginToSauceDemo").then((loginData)=>{
+        cy.get("#customer_email").type(loginData.email)
+        cy.get("#customer_password").type(loginData.password)
+    })
     cy.get("#customer_login [type=submit]").dblclick()
 })
-
-

@@ -5,7 +5,7 @@ describe('Products in cart', () => {
     let quantity = 1
     
     before(()=>{
-        cy.loginToSauceDemo("eng.razanbalatiah96@gmail.com","test@123")
+        cy.loginToSauceDemo()
     })
     it('Validate that the user can add a product to cart', () => {
         cy.visit('https://sauce-demo.myshopify.com/collections/all')
