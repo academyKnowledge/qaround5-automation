@@ -5,7 +5,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       on("file:preprocessor", cucumber());
     },
-    specPattern: "**/*.feature",
+    // specPattern: "**/*.feature",
     baseUrl:"https://opensource-demo.orangehrmlive.com/web/index.php/",
     // viewportWidth: 500 ,
     // viewportHeight : 500, 
